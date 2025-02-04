@@ -13,9 +13,9 @@ namespace InventoryLibrary.Models
             get => _name;
             set
             {
-                if (_name != value)
+                if (_name != value.Trim())
                 {
-                    _name = value; 
+                    _name = value.Trim(); 
                     OnPropertyChanged(nameof(Name));
                 }
             }
@@ -26,9 +26,9 @@ namespace InventoryLibrary.Models
             get => _category;
             set
             {
-                if (_category != value)
+                if (_category != value.Trim())
                 {
-                    _category = value; 
+                    _category = value.Trim(); 
                     OnPropertyChanged(nameof(Category));
                 }
             }

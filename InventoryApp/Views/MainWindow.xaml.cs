@@ -1,5 +1,4 @@
-﻿using InventoryLibrary.Models;
-using InventoryLibrary.ViewModels;
+﻿using InventoryLibrary.ViewModels;
 using System.Windows;
 
 namespace InventoryApp
@@ -13,6 +12,10 @@ namespace InventoryApp
         public MainWindow()
         {
             InitializeComponent();
+            _viewModel.ShowMessageBox = (message, title) =>
+            {
+                MessageBox.Show(message, title, MessageBoxButton.OK);
+            };
             DataContext = _viewModel;
         }
 
