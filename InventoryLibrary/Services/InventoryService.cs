@@ -1,17 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using InventoryLibrary.Models;
 using System.Collections.ObjectModel;
-using InventoryLibrary.Models;
 
 namespace InventoryLibrary.Services
 {
     public class InventoryService
     {
-        public ObservableCollection<InventoryItem> InventoryItems { get; private set; } = new ObservableCollection<InventoryItem>();
+        public ObservableCollection<InventoryItem> InventoryList { get; } = new()
+        {
+            new InventoryItem { Name = "Laptop", Category = "Electronics", Quantity = 5 },
+            new InventoryItem { Name = "Desk Chair", Category = "Furniture", Quantity = 10 }
+        };
 
+        public void AddItem(InventoryItem item)
+        {
+            if (!InventoryList.Any(i => i.Name == item.Name && i.Category == item.Category))
+            {
+                InventoryList.Add(item);
+            }
+        }
 
+        public void EditItem(InventoryItem oldItem, InventoryItem newItem)
+        {
+            var index = InventoryList.IndexOf(oldItem);
+            if (index != -1)
+            {
+                InventoryList[index] = newItem;
+            }
+        }
+
+        public void DeleteItem(InventoryItem item)
+        {
+            InventoryList.Remove(item);
+        }
     }
 }
+
